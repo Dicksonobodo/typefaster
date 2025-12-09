@@ -12,9 +12,9 @@ const wordBank = {
 };
 
 // Paths to audio in public/assets
-const correctSoundFile = "/typefast/assets/mixkit-bubble-pop-up-alert-notification-2357.wav";
-const gameoverSoundFile = "/typefast/assets/mixkit-sad-game-over-trombone-471.wav";
-const backgroundMusicFile = "/typefast/assets/mixkit-game-level-music-689.wav";
+const correctSoundFile = "/typefaster/assets/mixkit-bubble-pop-up-alert-notification-2357.wav";
+const gameoverSoundFile = "/typefaster/assets/mixkit-sad-game-over-trombone-471.wav";
+const backgroundMusicFile = "/typefaster/assets/mixkit-game-level-music-689.wav";
 
 
 function TypingGame() {
