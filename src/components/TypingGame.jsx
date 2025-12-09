@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import Word from "./Word";
 import "./TypingGame.css";
 
+
 const wordBank = {
   1: ["cat", "dog", "sun", "cup", "pen", "box"],
   2: ["water", "mouse", "phone", "sharp", "black", "green"],
@@ -11,9 +12,10 @@ const wordBank = {
 };
 
 // Paths to audio in public/assets
-const correctSoundFile = "/assets/mixkit-bubble-pop-up-alert-notification-2357.wav";
-const gameoverSoundFile = "/assets/mixkit-sad-game-over-trombone-471.wav";
-const backgroundMusicFile = "/assets/mixkit-game-level-music-689.wav";
+const correctSoundFile = "/typefast/assets/mixkit-bubble-pop-up-alert-notification-2357.wav";
+const gameoverSoundFile = "/typefast/assets/mixkit-sad-game-over-trombone-471.wav";
+const backgroundMusicFile = "/typefast/assets/mixkit-game-level-music-689.wav";
+
 
 function TypingGame() {
   const [score, setScore] = useState(0);
