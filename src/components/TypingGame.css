@@ -1,6 +1,17 @@
 body {
   margin: 0;
+  padding: 0;
   font-family: Arial, sans-serif;
+  overflow: hidden;
+}
+
+html {
+  height: 100%;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
 }
 
 .game-area {
@@ -10,6 +21,8 @@ body {
   background: #0d0d0d;
   overflow: hidden;
   color: white;
+  touch-action: none;
+  user-select: none;
 }
 
 /* Overlay screens */
@@ -19,64 +32,163 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0,0,0,0.9);
+  background: rgba(0,0,0,0.95);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   z-index: 10;
   text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.overlay h1 {
+  font-size: 28px;
+  margin: 10px 0;
+  color: #00ffae;
+  text-shadow: 0 0 20px cyan;
+}
+
+.overlay h2 {
+  font-size: 18px;
+  margin: 15px 0;
+  color: #fff;
+}
+
+.overlay p {
+  font-size: 16px;
+  margin: 15px 0;
+  color: #ccc;
 }
 
 .overlay button {
-  padding: 15px 35px;
-  font-size: 22px;
-  border-radius: 10px;
+  padding: 15px 40px;
+  font-size: 18px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
   background: #00ffae;
+  color: black;
   font-weight: bold;
+  margin-top: 20px;
+  min-height: 44px;
+  min-width: 120px;
+  touch-action: manipulation;
+  transition: all 0.2s ease;
+}
+
+.overlay button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 15px rgba(0, 255, 174, 0.6);
+}
+
+@media (min-width: 768px) {
+  .overlay h1 {
+    font-size: 48px;
+  }
+  .overlay h2 {
+    font-size: 24px;
+  }
+  .overlay p {
+    font-size: 18px;
+  }
+  .overlay button {
+    padding: 15px 50px;
+    font-size: 22px;
+  }
 }
 
 /* Falling Words */
 .falling-word {
   position: absolute;
-  font-size: 28px;
+  font-size: 24px;
   font-weight: bold;
   color: #00f6ff;
   text-shadow: 0 0 10px cyan;
+  transition: transform 0.3s, opacity 0.3s;
+  z-index: 5;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .falling-word {
+    font-size: 28px;
+  }
 }
 
 /* Input box */
 .input-box {
   position: absolute;
-  bottom: 25px;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 15px;
-  font-size: 22px;
-  width: 350px;
-  border-radius: 12px;
-  border: none;
+  padding: 12px 15px;
+  font-size: 18px;
+  width: calc(100% - 40px);
+  max-width: 400px;
+  border-radius: 8px;
+  border: 2px solid #00ffae;
   outline: none;
   text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  z-index: 10;
+  box-sizing: border-box;
+}
+
+.input-box::placeholder {
+  color: #888;
+}
+
+.input-box:focus {
+  border-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 255, 174, 0.5);
+}
+
+/* Mobile touch input optimization */
+@media (max-width: 768px) {
+  .input-box {
+    padding: 15px 12px;
+    font-size: 20px;
+    bottom: 15px;
+    width: calc(100% - 30px);
+  }
 }
 
 /* Scoreboard & Level */
 .scoreboard {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  font-size: 22px;
+  top: 15px;
+  left: 15px;
+  font-size: 16px;
   font-weight: bold;
+  z-index: 10;
+  text-shadow: 0 0 10px rgba(0, 255, 174, 0.5);
 }
 
 .level {
   position: absolute;
-  top: 20px;
-  right: 20px;
-  font-size: 22px;
+  top: 15px;
+  right: 15px;
+  font-size: 16px;
   font-weight: bold;
+  z-index: 10;
+  text-shadow: 0 0 10px rgba(0, 255, 174, 0.5);
+}
+
+@media (min-width: 768px) {
+  .scoreboard, .level {
+    font-size: 22px;
+    top: 20px;
+  }
+  .scoreboard {
+    left: 20px;
+  }
+  .level {
+    right: 20px;
+  }
 }
 
 

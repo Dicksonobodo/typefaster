@@ -85,7 +85,12 @@ function TypingGame() {
       const difficulty = Math.min(level, 5);
       const list = wordBank[difficulty];
       const word = list[Math.floor(Math.random() * list.length)];
-      const x = Math.random() * (window.innerWidth - 200);
+      
+      // Adjust spawn width for mobile
+      const gameWidth = window.innerWidth;
+      const wordWidth = word.length * 14; // Rough estimate for word width
+      const maxX = Math.max(0, gameWidth - wordWidth - 20);
+      const x = Math.random() * maxX;
 
       setActiveWords((prev) => [
         ...prev,
@@ -101,11 +106,14 @@ function TypingGame() {
     if (!gameRunning) return;
 
     let animationFrameId;
+    const gameHeight = window.innerHeight;
+    const checkHeight = Math.max(gameHeight - 100, gameHeight * 0.85);
+    
     const animate = () => {
       setActiveWords((prev) =>
         prev.map((w) => {
           const newY = w.y + speedRef.current;
-          if (newY > window.innerHeight - 80) endGame();
+          if (newY > checkHeight) endGame();
           return { ...w, y: newY };
         })
       );
@@ -201,6 +209,10 @@ function TypingGame() {
           onChange={handleInputChange}
           placeholder="Type here..."
           autoFocus
+          autoCapitalize="off"
+          autoCorrect="off"
+          spellCheck="false"
+          autoComplete="off"
         />
       )}
     </div>
